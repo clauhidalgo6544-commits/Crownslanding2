@@ -50,9 +50,14 @@ n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
 t=b.createElement(e);t.async=!0;t.src=v;
 s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
 }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','1380301734243105');
-fbq('track','PageView');
+
+fbq('init', '1380301734243105');
+fbq('track', 'PageView');
 </script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1380301734243105&ev=PageView&noscript=1"/>
+</noscript>
 
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
@@ -270,14 +275,25 @@ const openBtn = document.getElementById('openChatBtn');
 let ready = false;
 let pending = false;
 
+function fireContactEvent() {
+  try {
+    if (typeof fbq === 'function') {
+      fbq('track', 'Contact');
+      fbq('trackCustom', 'ClickWhatsAppButton');
+      console.log('✅ Evento Contact enviado');
+    } else {
+      console.log('❌ fbq no está disponible todavía');
+    }
+  } catch (e) {
+    console.log('Error pixel:', e);
+  }
+}
+
 function openReal(){
   frame.classList.add('is-open');
   closeBtn.classList.add('is-open');
   try{ crmPlugin('runChatShow'); }catch(e){}
-  try{
-    fbq('track', 'Contact');
-    fbq('trackCustom', 'ClickWhatsAppButton');
-  }catch(e){}
+  fireContactEvent();
 }
 
 function openChat(){
@@ -293,7 +309,7 @@ function closeChat(){
 
 function bind(){
   if(typeof crmPlugin !== 'function'){
-    setTimeout(bind, 100);
+    setTimeout(bind, 150);
     return;
   }
   crmPlugin('onChatReady', function(){
