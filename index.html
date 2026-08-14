@@ -6,6 +6,7 @@
 <meta name="theme-color" content="#25D366">
 <title>Ganamos - Bono 100% Extra</title>
 
+<!-- Configuración Kommo (botón escondido) -->
 <script>
 window.crmPluginConfig = {
   hidden: true,
@@ -21,6 +22,25 @@ window.crmPluginConfig = {
 };
 </script>
 
+<!-- Nuevo script de Kommo -->
+<script>
+(function(a,m,o,c,r,m){
+  a[m]={
+    id:"1079137",
+    hash:"b8fb8e64814344f91c3a8e77561aee0d916db58bd7698aed2ffa3f0762ff0718",
+    locale:"es",
+    setMeta:function(p){this.params=(this.params||[]).concat([p])}
+  };
+  a[o]=a[o]||function(){(a[o].q=a[o].q||[]).push(arguments)};
+  var d=a.document,s=d.createElement('script');
+  s.async=true;
+  s.id=m+'_script';
+  s.src='https://gso.kommo.com/js/button.js';
+  d.head&&d.head.appendChild(s);
+}(window,0,'crmPlugin',0,0,'crm_plugin'));
+</script>
+
+<!-- Facebook Pixel -->
 <script>
 !function(f,b,e,v,n,t,s){
 if(f.fbq)return;
@@ -113,7 +133,6 @@ fbq('track','PageView');
     color: #aaa;
   }
 
-  /* BOTÓN WHATSAPP CON ANIMACIÓN */
   .wa-btn{
     display: flex;
     align-items: center;
@@ -148,7 +167,6 @@ fbq('track','PageView');
     color: #777;
   }
 
-  /* Animaciones */
   @keyframes shake {
     0%, 100% { transform: translateX(0); }
     8%  { transform: translateX(-4px); }
@@ -173,7 +191,6 @@ fbq('track','PageView');
     50% { opacity: 0.4; transform: scale(0.85); }
   }
 
-  /* Kommo */
   #kommoChatFrame{
     position: fixed;
     inset: 0;
@@ -247,19 +264,6 @@ fbq('track','PageView');
 <button id="kommoClose">✕</button>
 
 <script>
-(function(a,m,o,c,r,mn){
-  a[mn]={
-    id:"1078895",
-    hash:"7afe8c661ae21b1eb55f38b542603609f977ea292469fbd2b5cb0cf03380b008",
-    locale:"es"
-  };
-  a[o]=a[o]||function(){(a[o].q=a[o].q||[]).push(arguments)};
-  var d=a.document,s=d.createElement('script');
-  s.async=true;
-  s.src='https://gso.kommo.com/js/button.js';
-  d.head.appendChild(s);
-}(window,0,'crmPlugin',0,0,'crm_plugin'));
-
 const frame = document.getElementById('kommoChatFrame');
 const closeBtn = document.getElementById('kommoClose');
 const openBtn = document.getElementById('openChatBtn');
@@ -271,7 +275,7 @@ function openReal(){
   closeBtn.classList.add('is-open');
   try{ crmPlugin('runChatShow'); }catch(e){}
   try{
-    fbq('track', 'CompleteRegistration');
+    fbq('track', 'Contact');
     fbq('trackCustom', 'ClickWhatsAppButton');
   }catch(e){}
 }
